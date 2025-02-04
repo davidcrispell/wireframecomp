@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sujay Potlapelly – Chronological Timeline</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" />
+</head>
+<body>
+  <!-- Canvas for Interactive Pong Game Background -->
+  <canvas id="pongGame"></canvas>
+
+  <!-- Header with Title & Tagline -->
+  <header>
+    <h1>Sujay Potlapelly</h1>
+    <p class="tagline">Innovator • Engineer • Leader</p>
+  </header>
+
+  <!-- Sticky Key for Icons and Symbols -->
+  <aside class="timeline-key">
+    <h2>Key</h2>
+    <ul>
+      <li><span class="key-icon">🎂</span> Birth</li>
+      <li><span class="key-icon">🎒</span> Early School</li>
+      <li><span class="key-icon">🎓</span> Graduation/Education</li>
+      <li><span class="key-icon">🧪</span> Research/Internship</li>
+      <li><span class="key-icon">💼</span> Professional Internship</li>
+      <li><span class="key-icon">💡</span> Projects</li>
+      <li><span class="key-icon">🤖</span> Tech & AI/ML</li>
+      <li><span class="key-icon">🐶</span> Life Events</li>
+    </ul>
+  </aside>
+
+  <!-- Bottom Panel containing timeline and legends -->
+  <div class="bottom-panel">
+    <!-- Horizontal Timeline Wrapper (auto‑scrolling) -->
+    <div class="timeline-wrapper">
+      <div class="timeline">
+        <!-- Event 1: Birth (Early Life) -->
+        <div class="timeline-event" data-modal="modal1" data-period="early-life">
+          <div class="event-marker">🎂</div>
+          <div class="event-content">
+            <h3>Birth</h3>
+            <span class="event-date">Mar 10, 2005</span>
+            <img src="https://source.unsplash.com/featured/?newborn" alt="Birth" class="thumbnail" />
+          </div>
+        </div>
+
+        <!-- Event 2: First Day of School (Early Life) -->
+        <div class="timeline-event" data-modal="modal2" data-period="early-life">
+          <div class="event-marker">🎒</div>
+          <div class="event-content">
+            <h3>First Day of School</h3>
+            <span class="event-date">2009</span>
+            <img src="https://source.unsplash.com/featured/?school,children" alt="School" class="thumbnail" />
+          </div>
+        </div>
+
+        <!-- Event 3: Anschutz Research (Growing Up) -->
+        <div class="timeline-event" data-modal="modal3" data-period="growing-up">
+          <div class="event-marker">🧪</div>
+          <div class="event-content">
+            <h3>Anschutz Research</h3>
+            <span class="event-date">Sep 2019 – May 2022</span>
+            <img src="https://source.unsplash.com/featured/?research,lab" alt="Anschutz Research" class="thumbnail" />
+          </div>
+        </div>
+
+        <!-- Event 4: Got a Dog (Growing Up) -->
+        <div class="timeline-event" data-modal="modal4" data-period="growing-up">
+          <div class="event-marker">🐶</div>
+          <div class="event-content">
+            <h3>Got a Dog</h3>
+            <span class="event-date">Aug 10, 2021</span>
+            <img src="https://source.unsplash.com/featured/?dog" alt="Got a Dog" class="thumbnail" />
+          </div>
+        </div>
+
+        <!-- Event 5: Harvard Medical Internship (Professional) -->
+        <div class="timeline-event" data-modal="modal5" data-period="professional">
+          <div class="event-marker">🩺</div>
+          <div class="event-content">
+            <h3>Harvard Medical Internship</h3>
+            <span class="event-date">May 2022 – Apr 2024</span>
+            <img src="https://source.unsplash.com/featured/?hospital,internship" alt="Harvard Internship" class="thumbnail" />
+          </div>
+        </div>
+
+        <!-- Event 6: High School Graduation (Growing Up) -->
+        <div class="timeline-event" data-modal="modal6" data-period="growing-up">
+          <div class="event-marker">🎓</div>
+          <div class="event-content">
+            <h3>High School Graduation</h3>
+            <span class="event-date">2023</span>
+            <img src="https://source.unsplash.com/featured/?graduation,highschool" alt="High School Graduation" class="thumbnail" />
+          </div>
+        </div>
+
+        <!-- Event 7: Edvise Project (Professional) -->
+        <div class="timeline-event" data-modal="modal7" data-period="professional">
+          <div class="event-marker">💡</div>
+          <div class="event-content">
+            <h3>Edvise Project</h3>
+            <span class="event-date">2023</span>
+            <img src="https://source.unsplash.com/featured/?startup,tech" alt="Edvise Project" class="thumbnail" />
+          </div>
+        </div>
+
+        <!-- Event 8: Boulder Launchpad (Professional) -->
+        <div class="timeline-event" data-modal="modal8" data-period="professional">
+          <div class="event-marker">🤖</div>
+          <div class="event-content">
+            <h3>Boulder Launchpad</h3>
+            <span class="event-date">2023</span>
+            <img src="https://source.unsplash.com/featured/?entrepreneur,startup" alt="Boulder Launchpad" class="thumbnail" />
+          </div>
+        </div>
+
+        <!-- Event 9: Empower Internship (Professional) -->
+        <div class="timeline-event" data-modal="modal9" data-period="professional">
+          <div class="event-marker">💼</div>
+          <div class="event-content">
+            <h3>Empower Internship</h3>
+            <span class="event-date">May 2024 – Aug 2024</span>
+            <img src="https://source.unsplash.com/featured/?tech,office" alt="Empower Internship" class="thumbnail" />
+          </div>
+        </div>
+
+        <!-- Event 10: Ibotta Internship (Professional) -->
+        <div class="timeline-event" data-modal="modal10" data-period="professional">
+          <div class="event-marker">💼</div>
+          <div class="event-content">
+            <h3>Ibotta Internship</h3>
+            <span class="event-date">Aug 2024 – Dec 2024</span>
+            <img src="https://source.unsplash.com/featured/?office,tech" alt="Ibotta Internship" class="thumbnail" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Timeline Information: Life Periods Legend and Year Scale -->
+    <div class="timeline-info">
+      <div class="life-periods">
+        <ul>
+          <li><span class="period-indicator early-life"></span> Early Life</li>
+          <li><span class="period-indicator growing-up"></span> Growing Up</li>
+          <li><span class="period-indicator professional"></span> Professional</li>
+        </ul>
+      </div>
+      <div class="year-scale">
+        <span class="year-marker">2005</span>
+        <span class="year-marker">2010</span>
+        <span class="year-marker">2015</span>
+        <span class="year-marker">2020</span>
+        <span class="year-marker">2025</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Pop-ups for Each Event -->
+  <!-- Modal 1: Birth -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Birth</h2>
+      <span class="modal-date">Mar 10, 2005</span>
+      <img src="https://source.unsplash.com/featured/?newborn" alt="Birth" class="modal-image" />
+      <p class="modal-caption">The beginning of my journey.</p>
+      <p class="modal-text">I was born on March 10, 2005, marking the start of my lifelong pursuit of knowledge and innovation.</p>
+    </div>
+  </div>
+
+  <!-- Modal 2: First Day of School -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>First Day of School</h2>
+      <span class="modal-date">2009</span>
+      <img src="https://source.unsplash.com/featured/?school,children" alt="School" class="modal-image" />
+      <p class="modal-caption">A day of wonder and discovery.</p>
+      <p class="modal-text">My first day of school in 2009 was filled with excitement and curiosity, setting the stage for a lifelong love of learning.</p>
+    </div>
+  </div>
+
+  <!-- Modal 3: Anschutz Research -->
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Anschutz Research</h2>
+      <span class="modal-date">Sep 2019 – May 2022</span>
+      <img src="https://source.unsplash.com/featured/?research,lab" alt="Anschutz Research" class="modal-image" />
+      <p class="modal-caption">Innovating prosthetic mechanisms.</p>
+      <p class="modal-text">At Anschutz Medical Campus, I participated in pioneering research focused on developing and testing prosthetic mechanisms using advanced technology.</p>
+    </div>
+  </div>
+
+  <!-- Modal 4: Got a Dog -->
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Got a Dog</h2>
+      <span class="modal-date">Aug 10, 2021</span>
+      <img src="https://source.unsplash.com/featured/?dog" alt="Got a Dog" class="modal-image" />
+      <p class="modal-caption">A new best friend.</p>
+      <p class="modal-text">On August 10, 2021, I welcomed a loyal companion into my life—a dog who has brought endless joy and inspiration.</p>
+    </div>
+  </div>
+
+  <!-- Modal 5: Harvard Medical Internship -->
+  <div id="modal5" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Harvard Medical Internship</h2>
+      <span class="modal-date">May 2022 – Apr 2024</span>
+      <img src="https://source.unsplash.com/featured/?hospital,internship" alt="Harvard Medical Internship" class="modal-image" />
+      <p class="modal-caption">Advancing healthcare technology.</p>
+      <p class="modal-text">During my internship at Harvard Medical School &amp; Brigham and Women’s Hospital, I developed innovative solutions including a convolutional neural network for autism identification.</p>
+    </div>
+  </div>
+
+  <!-- Modal 6: High School Graduation -->
+  <div id="modal6" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>High School Graduation</h2>
+      <span class="modal-date">2023</span>
+      <img src="https://source.unsplash.com/featured/?graduation,highschool" alt="High School Graduation" class="modal-image" />
+      <p class="modal-caption">A milestone of achievement.</p>
+      <p class="modal-text">Graduating high school in 2023 was a proud moment that opened the door to further academic and personal growth.</p>
+    </div>
+  </div>
+
+  <!-- Modal 7: Edvise Project -->
+  <div id="modal7" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Edvise Project</h2>
+      <span class="modal-date">2023</span>
+      <img src="https://source.unsplash.com/featured/?startup,tech" alt="Edvise Project" class="modal-image" />
+      <p class="modal-caption">Empowering academic planning.</p>
+      <p class="modal-text">I founded Edvise to help students plan their courses effectively, leveraging modern web technologies like Python, React, and Firebase.</p>
+    </div>
+  </div>
+
+  <!-- Modal 8: Boulder Launchpad -->
+  <div id="modal8" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Boulder Launchpad</h2>
+      <span class="modal-date">2023</span>
+      <img src="https://source.unsplash.com/featured/?entrepreneur,startup" alt="Boulder Launchpad" class="modal-image" />
+      <p class="modal-caption">Fostering innovation and entrepreneurship.</p>
+      <p class="modal-text">As the founder and president of Boulder Launchpad, I established a community to support innovation and connect entrepreneurs with investors.</p>
+    </div>
+  </div>
+
+  <!-- Modal 9: Empower Internship -->
+  <div id="modal9" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Empower Internship</h2>
+      <span class="modal-date">May 2024 – Aug 2024</span>
+      <img src="https://source.unsplash.com/featured/?tech,office" alt="Empower Internship" class="modal-image" />
+      <p class="modal-caption">Streamlining workflow services.</p>
+      <p class="modal-text">At Empower, I built a PDF Generation Workflow Service using AWS and Apache PDFBox, streamlining operations for hundreds of customers.</p>
+    </div>
+  </div>
+
+  <!-- Modal 10: Ibotta Internship -->
+  <div id="modal10" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Ibotta Internship</h2>
+      <span class="modal-date">Aug 2024 – Dec 2024</span>
+      <img src="https://source.unsplash.com/featured/?office,tech" alt="Ibotta Internship" class="modal-image" />
+      <p class="modal-caption">Enhancing user engagement.</p>
+      <p class="modal-text">During my internship at Ibotta, I developed a ChatGPT plugin to provide personalized shopping assistance and improve user engagement.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
