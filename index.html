@@ -1,319 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sujay Potlapelly – Chronological Timeline</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- Google Fonts: Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" />
+  <meta charset="UTF-8">
+  <title>Netflix Interview Tool for Over-50 Users</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background: #f7f7f7;
+      line-height: 1.6;
+    }
+    header {
+      margin-bottom: 20px;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    section {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 40px;
+    }
+    button {
+      margin: 10px 5px 0 0;
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .option-button {
+      display: block;
+      margin: 8px 0;
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+      font-size: 16px;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      background: #eef;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 <body>
-  <!-- Canvas for Interactive Pong Game Background -->
-  <canvas id="pongGame"></canvas>
-
-  <!-- Header with Title & Tagline -->
   <header>
-    <h1>Sujay Potlapelly</h1>
-    <p class="tagline">Innovator • Engineer • Leader</p>
+    <h1>Netflix Interview Tool</h1>
+    <p>This enhanced tool guides you through a branching interview about Netflix usage by older users. For each open-ended question, use the text area provided to record your observations. When you’re finished, you’ll have an opportunity to review your responses.</p>
   </header>
-
-  <!-- Sticky Key for Icons and Symbols -->
-  <aside class="timeline-key">
-    <h2>Key</h2>
-    <ul>
-      <li><span class="key-icon">🎂</span> Birth</li>
-      <li><span class="key-icon">🎒</span> Early School</li>
-      <li><span class="key-icon">🎓</span> Graduation/Education</li>
-      <li><span class="key-icon">🧪</span> Research/Internship</li>
-      <li><span class="key-icon">💼</span> Professional Internship</li>
-      <li><span class="key-icon">💡</span> Projects</li>
-      <li><span class="key-icon">🤖</span> Tech & AI/ML</li>
-      <li><span class="key-icon">🐶</span> Life Events</li>
-    </ul>
-  </aside>
-
-  <!-- Bottom Panel containing timeline and legends -->
-  <div class="bottom-panel">
-    <!-- Horizontal Timeline Wrapper (auto‑scrolling) -->
-    <div class="timeline-wrapper">
-      <div class="timeline">
-        <!-- Event 1: Birth (Early Life) -->
-        <div class="timeline-event" data-modal="modal1" data-period="early-life">
-          <div class="event-marker">🎂</div>
-          <div class="event-content">
-            <h3>Birth</h3>
-            <span class="event-date">Mar 10, 2005</span>
-            <img src="https://onebighappyphoto.com/wp-content/uploads/Indian-newborn-baby-boy-photoshoot-0674-One-Big-Happy-Photo.jpg" alt="Birth" class="thumbnail" />
-          </div>
-        </div>
-
-        <!-- Event 2: First Day of School (Early Life) -->
-        <div class="timeline-event" data-modal="modal2" data-period="early-life">
-          <div class="event-marker">🎒</div>
-          <div class="event-content">
-            <h3>First Day of School</h3>
-            <span class="event-date">Sep 1, 2009</span>
-            <img src="https://3.files.edl.io/57d6/19/04/18/011239-c3211bed-6b08-4c7a-92dd-263e2391d4aa.png" alt="School" class="thumbnail" />
-          </div>
-        </div>
-
-        <!-- Event 3: Anschutz Research (Growing Up) -->
-        <div class="timeline-event" data-modal="modal3" data-period="growing-up">
-          <div class="event-marker">🧪</div>
-          <div class="event-content">
-            <h3>Anschutz Research</h3>
-            <span class="event-date">Sep 2, 2019 – May 15, 2022</span>
-            <img src="https://biomech.media.mit.edu/wp-content/uploads/sites/8/2013/06/MIT_Media_Lab_BioMech_full_cropped_0029-scaled.jpg" alt="Anschutz Research" class="thumbnail" />
-          </div>
-        </div>
-
-        <!-- Event 4: Got a Dog (Growing Up) -->
-        <div class="timeline-event" data-modal="modal4" data-period="growing-up">
-          <div class="event-marker">🐶</div>
-          <div class="event-content">
-            <h3>Got a Dog</h3>
-            <span class="event-date">Aug 10, 2021</span>
-            <img src="https://images.photowall.com/products/57209/golden-retriever-puppy-in-meadow.jpg?h=699&q=85" alt="Got a Dog" class="thumbnail" />
-          </div>
-        </div>
-
-        <!-- Event 5: Harvard Medical Internship (Professional) -->
-        <div class="timeline-event" data-modal="modal5" data-period="professional">
-          <div class="event-marker">🩺</div>
-          <div class="event-content">
-            <h3>Harvard Medical Internship</h3>
-            <span class="event-date">May 3, 2022 – Apr 15, 2024</span>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPKBMRUcXtmRIFO0WxJDn94p9T0ijRRnNZEA&s" alt="Harvard Internship" class="thumbnail" />
-          </div>
-        </div>
-
-        <!-- Event 6: High School Graduation (Growing Up) -->
-        <div class="timeline-event" data-modal="modal6" data-period="growing-up">
-          <div class="event-marker">🎓</div>
-          <div class="event-content">
-            <h3>High School Graduation</h3>
-            <span class="event-date">Jun 5, 2023</span>
-            <img src="https://coloradocommunitymedia.com/wp-content/uploads/2023/05/20230519-154555-DCN20052520rock20canyon20graduation.jpg" alt="High School Graduation" class="thumbnail" />
-          </div>
-        </div>
-
-        <!-- Event 7: Edvise Project (Professional) -->
-        <div class="timeline-event" data-modal="modal7" data-period="professional">
-          <div class="event-marker">💡</div>
-          <div class="event-content">
-            <h3>Edvise</h3>
-            <span class="event-date">Aug 21, 2023</span>
-            <img src="https://cdn.prod.website-files.com/658b30bdca1479f5b8a0871e/66049943a96617e92bd0d80b_Edvise%20Long%20logo%20with%20Light%20Grey-p-500.png" alt="Edvise Project" class="thumbnail" />
-          </div>
-        </div>
-
-        <!-- Event 8: Boulder Launchpad (Professional) -->
-        <div class="timeline-event" data-modal="modal8" data-period="professional">
-          <div class="event-marker">🤖</div>
-          <div class="event-content">
-            <h3>Boulder Launchpad</h3>
-            <span class="event-date">Oct 10, 2023</span>
-            <img src="https://cdn.prod.website-files.com/65e565b57b21a095353ada79/660c88ff0b5ecc2eef8fb2c7_Asset%203%4020x256.png" alt="Boulder Launchpad" class="thumbnail" />
-          </div>
-        </div>
-
-        <!-- Event 9: Empower Internship (Professional) -->
-        <div class="timeline-event" data-modal="modal9" data-period="professional">
-          <div class="event-marker">💼</div>
-          <div class="event-content">
-            <h3>Empower Internship</h3>
-            <span class="event-date">May 12, 2024 – Aug 20, 2024</span>
-            <img src="https://www.empowerfieldatmilehigh.com/assets/img/efamh_images_560x420_3D_seating_chart-74d0839275.jpg" alt="Empower Internship" class="thumbnail" />
-          </div>
-        </div>
-
-        <!-- Event 10: Ibotta Internship (Professional) -->
-        <div class="timeline-event" data-modal="modal10" data-period="professional">
-          <div class="event-marker">💼</div>
-          <div class="event-content">
-            <h3>Ibotta Internship</h3>
-            <span class="event-date">Aug 5, 2024 – Dec 15, 2024</span>
-            <img src="https://i0.wp.com/newspack-coloradosun.s3.amazonaws.com/wp-content/uploads/2024/04/Ibotta-Office-3-1-1200x800.jpg?resize=780%2C520&quality=85&ssl=1" alt="Ibotta Internship" class="thumbnail" />
-          </div>
-        </div>
-      </div>
+  
+  <section id="interviewTool">
+    <div id="interviewContent">
+      <!-- Interview steps will be loaded here -->
     </div>
-    <!-- Timeline Information: Life Periods Legend, Year Scale & Month Scale -->
-    <div class="timeline-info">
-      <div class="life-periods">
-        <ul>
-          <li><span class="period-indicator early-life"></span> Early Life</li>
-          <li><span class="period-indicator growing-up"></span> Growing Up</li>
-          <li><span class="period-indicator professional"></span> Professional</li>
-        </ul>
-      </div>
-      <div class="year-scale">
-        <span class="year-marker">2005</span>
-        <span class="year-marker">2010</span>
-        <span class="year-marker">2015</span>
-        <span class="year-marker">2020</span>
-        <span class="year-marker">2025</span>
-      </div>
-      <!-- New Month Scale Section -->
-      <div class="month-scale">
-        <span class="month-marker">Jan</span>
-        <span class="month-marker">Feb</span>
-        <span class="month-marker">Mar</span>
-        <span class="month-marker">Apr</span>
-        <span class="month-marker">May</span>
-        <span class="month-marker">Jun</span>
-        <span class="month-marker">Jul</span>
-        <span class="month-marker">Aug</span>
-        <span class="month-marker">Sep</span>
-        <span class="month-marker">Oct</span>
-        <span class="month-marker">Nov</span>
-        <span class="month-marker">Dec</span>
-      </div>
-    </div>
-  </div>
+  </section>
+  
+  <script>
+    // Global object to store responses
+    const responses = {};
 
-  <!-- Modal Pop-ups for Each Event -->
-  <!-- Modal 1: Birth -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Birth</h2>
-      <span class="modal-date">Mar 10, 2005</span>
-      <img src="https://onebighappyphoto.com/wp-content/uploads/Indian-newborn-baby-boy-photoshoot-0674-One-Big-Happy-Photo.jpg" alt="Birth" class="modal-image" />
-      <p class="modal-caption">The beginning of my journey.</p>
-      <p class="modal-text">
-        I was born on March 10, 2005, marking the very start of a lifelong journey into discovery and creativity. That day set the stage for my relentless pursuit of knowledge, innovation, and personal growth – a journey that continues to unfold with every new experience.
-      </p>
-    </div>
-  </div>
+    // Interview Tool Steps with Branching Logic and Response Recording
+    const steps = {
+      step1: {
+        id: 'step1',
+        content: `
+          <h3>Welcome</h3>
+          <p>Welcome to the Netflix Interview Tool for users over 50. This interview will help you gather insights about digital interfaces. Click "Begin Interview" to get started.</p>
+        `,
+        options: [{ text: 'Begin Interview', next: 'step2' }],
+        recordResponse: false
+      },
+      step2: {
+        id: 'step2',
+        content: `
+          <h3>Good Technology</h3>
+          <p>Describe a piece of technology that you like and feel comfortable using (for example, a streaming service, a smartphone app, or another digital device).<br>
+          Was it easy to use right away, or did you need to learn how to use it over time?</p>
+        `,
+        options: [
+          { text: 'Easy to Use Right Away', next: 'step3' },
+          { text: 'Required Learning Over Time', next: 'step4' }
+        ],
+        recordResponse: false
+      },
+      step3: {
+        id: 'step3',
+        content: `
+          <h3>Follow-up: Easy to Use</h3>
+          <p>What features made this technology friendly for beginners? <em>(Please record your answer below.)</em></p>
+        `,
+        options: [{ text: 'Save & Continue', next: 'step5' }],
+        recordResponse: true
+      },
+      step4: {
+        id: 'step4',
+        content: `
+          <h3>Follow-up: Learning Curve</h3>
+          <p>What challenges did you face when learning to use it, and how did you overcome them? <em>(Please record your answer below.)</em></p>
+        `,
+        options: [{ text: 'Save & Continue', next: 'step5' }],
+        recordResponse: true
+      },
+      step5: {
+        id: 'step5',
+        content: `
+          <h3>Bad Technology</h3>
+          <p>Now, identify a piece of technology you dislike or find frustrating.<br>
+          Did you dislike it immediately, or did your frustration develop over time?</p>
+        `,
+        options: [
+          { text: 'Disliked Immediately', next: 'step6' },
+          { text: 'Frustration Developed Gradually', next: 'step7' }
+        ],
+        recordResponse: false
+      },
+      step6: {
+        id: 'step6',
+        content: `
+          <h3>Follow-up: Immediate Dislike</h3>
+          <p>What aspects of this technology made it frustrating from the start? <em>(Please record your answer below.)</em></p>
+        `,
+        options: [{ text: 'Save & Continue', next: 'step8' }],
+        recordResponse: true
+      },
+      step7: {
+        id: 'step7',
+        content: `
+          <h3>Follow-up: Gradual Frustration</h3>
+          <p>What features or aspects became problematic over time, and why? <em>(Please record your answer below.)</em></p>
+        `,
+        options: [{ text: 'Save & Continue', next: 'step8' }],
+        recordResponse: true
+      },
+      step8: {
+        id: 'step8',
+        content: `
+          <h3>Emotional Response</h3>
+          <p>How do you feel about the prospect of using new technology? Why do you think you feel that way? <em>(Please record your answer below.)</em></p>
+        `,
+        options: [{ text: 'Save & Continue', next: 'step9' }],
+        recordResponse: true
+      },
+      step9: {
+        id: 'step9',
+        content: `
+          <h3>Learning Preferences</h3>
+          <p>How do you prefer to learn new technology? (For example, step-by-step tutorials, video demos, in-person training, or interactive demos.) <em>(Please record your answer below.)</em></p>
+        `,
+        options: [{ text: 'Save & Continue', next: 'step10' }],
+        recordResponse: true
+      },
+      step10: {
+        id: 'step10',
+        content: `
+          <h3>Additional Feedback</h3>
+          <p>Do you have any extra suggestions or ideas for improving digital interfaces like Netflix for users over 50? <em>(Please record your answer below.)</em></p>
+        `,
+        options: [{ text: 'Review Your Responses', next: 'step11' }],
+        recordResponse: true
+      },
+      step11: {
+        id: 'step11',
+        content: `<h3>Review Your Responses</h3>`,
+        options: [{ text: 'Finish Interview', next: 'step12' }],
+        recordResponse: false
+      },
+      step12: {
+        id: 'step12',
+        content: `
+          <h3>Conclusion</h3>
+          <p>Thank you for completing the interview. Your responses have been recorded. If you wish, you can restart the interview.</p>
+        `,
+        options: [{ text: 'Restart Interview', next: 'step1' }],
+        recordResponse: false
+      }
+    };
 
-  <!-- Modal 2: First Day of School -->
-  <div id="modal2" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>First Day of School</h2>
-      <span class="modal-date">Sep 1, 2009</span>
-      <img src="https://3.files.edl.io/57d6/19/04/18/011239-c3211bed-6b08-4c7a-92dd-263e2391d4aa.png" alt="School" class="modal-image" />
-      <p class="modal-caption">A day of wonder and discovery.</p>
-      <p class="modal-text">
-        My first day of school on September 1, 2009 was a transformative experience. Stepping into a vibrant environment filled with new faces and endless possibilities, I discovered a love for learning that would grow and shape my academic future.
-      </p>
-    </div>
-  </div>
+    // Function to display a given interview step
+    function displayStep(stepId) {
+      const step = steps[stepId];
+      let html = step.content;
 
-  <!-- Modal 3: Anschutz Research -->
-  <div id="modal3" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Anschutz Research</h2>
-      <span class="modal-date">Sep 2, 2019 – May 15, 2022</span>
-      <img src="https://biomech.media.mit.edu/wp-content/uploads/sites/8/2013/06/MIT_Media_Lab_BioMech_full_cropped_0029-scaled.jpg" alt="Anschutz Research" class="modal-image" />
-      <p class="modal-caption">Pioneering medical innovation.</p>
-      <p class="modal-text">
-        At Anschutz Medical Campus, from September 2, 2019 to May 15, 2022, I immersed myself in groundbreaking research. Collaborating with leading scientists, I contributed to the development of advanced prosthetic mechanisms that bridge the gap between technology and healthcare.
-      </p>
-    </div>
-  </div>
+      // For the "Review Your Responses" step, generate dynamic summary
+      if (step.id === 'step11') {
+        html += generateReviewContent();
+      }
 
-  <!-- Modal 4: Got a Dog -->
-  <div id="modal4" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Got a Dog</h2>
-      <span class="modal-date">Aug 10, 2021</span>
-      <img src="https://images.photowall.com/products/57209/golden-retriever-puppy-in-meadow.jpg?h=699&q=85" alt="Got a Dog" class="modal-image" />
-      <p class="modal-caption">Welcoming a loyal companion.</p>
-      <p class="modal-text">
-        On August 10, 2021, I welcomed a loyal canine companion into my life. This new friend brought joy, laughter, and valuable lessons in empathy and responsibility, transforming everyday moments into cherished memories.
-      </p>
-    </div>
-  </div>
+      // If this step requires recording a response, add a text area and a save button.
+      if (step.recordResponse) {
+        html += `<textarea id="responseInput" placeholder="Record your response here..."></textarea>`;
+        // We assume only one option for response-recording steps.
+        if (step.options && step.options.length > 0) {
+          html += `<button class="option-button" onclick="saveResponse('${step.id}', '${step.options[0].next}')">${step.options[0].text}</button>`;
+        }
+      } else {
+        // For steps without a response input, simply list the options.
+        if (step.options && step.options.length > 0) {
+          step.options.forEach(option => {
+            html += `<button class="option-button" onclick="displayStep('${option.next}')">${option.text}</button>`;
+          });
+        }
+      }
+      document.getElementById('interviewContent').innerHTML = html;
+    }
 
-  <!-- Modal 5: Harvard Medical Internship -->
-  <div id="modal5" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Harvard Medical Internship</h2>
-      <span class="modal-date">May 3, 2022 – Apr 15, 2024</span>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPKBMRUcXtmRIFO0WxJDn94p9T0ijRRnNZEA&s" alt="Harvard Medical Internship" class="modal-image" />
-      <p class="modal-caption">Advancing healthcare technology.</p>
-      <p class="modal-text">
-        During my internship at Harvard Medical School and Brigham and Women’s Hospital from May 3, 2022 to April 15, 2024, I worked alongside world-renowned experts. I contributed to innovative projects – including a convolutional neural network for early autism detection – that fused cutting-edge research with practical medical applications.
-      </p>
-    </div>
-  </div>
+    // Function to save the response from the text area and go to the next step
+    function saveResponse(currentStepId, nextStepId) {
+      const response = document.getElementById('responseInput').value.trim();
+      responses[currentStepId] = response;
+      displayStep(nextStepId);
+    }
 
-  <!-- Modal 6: High School Graduation -->
-  <div id="modal6" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>High School Graduation</h2>
-      <span class="modal-date">Jun 5, 2023</span>
-      <img src="https://coloradocommunitymedia.com/wp-content/uploads/2023/05/20230519-154555-DCN20052520rock20canyon20graduation.jpg" alt="High School Graduation" class="modal-image" />
-      <p class="modal-caption">A milestone of achievement.</p>
-      <p class="modal-text">
-        On June 5, 2023, I celebrated my high school graduation – a moment that symbolized years of dedication, perseverance, and academic growth. This milestone marked the end of one chapter and the exciting beginning of new challenges and opportunities.
-      </p>
-    </div>
-  </div>
+    // Function to generate review content from recorded responses
+    function generateReviewContent() {
+      let reviewHTML = `<p>Below are your recorded responses:</p>`;
+      if (Object.keys(responses).length === 0) {
+        reviewHTML += `<p><em>No responses recorded.</em></p>`;
+      } else {
+        reviewHTML += `<ul>`;
+        // Loop over the steps that recorded responses
+        for (const key in responses) {
+          reviewHTML += `<li><strong>${key}:</strong> ${responses[key]}</li>`;
+        }
+        reviewHTML += `</ul>`;
+      }
+      return reviewHTML;
+    }
 
-  <!-- Modal 7: Edvise Project -->
-  <div id="modal7" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Edvise Project</h2>
-      <span class="modal-date">Aug 21, 2023</span>
-      <img src="https://cdn.prod.website-files.com/658b30bdca1479f5b8a0871e/66049943a96617e92bd0d80b_Edvise%20Long%20logo%20with%20Light%20Grey-p-500.png" alt="Edvise Project" class="modal-image" />
-      <p class="modal-caption">Empowering academic planning.</p>
-      <p class="modal-text">
-        On August 21, 2023, I launched the Edvise Project, a revolutionary platform designed to transform academic planning. Leveraging modern web technologies like Python, React, and Firebase, Edvise offers students personalized tools to design effective educational pathways.
-      </p>
-    </div>
-  </div>
-
-  <!-- Modal 8: Boulder Launchpad -->
-  <div id="modal8" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Boulder Launchpad</h2>
-      <span class="modal-date">Oct 10, 2023</span>
-      <img src="https://cdn.prod.website-files.com/65e565b57b21a095353ada79/660c88ff0b5ecc2eef8fb2c7_Asset%203%4020x256.png" alt="Boulder Launchpad" class="modal-image" />
-      <p class="modal-caption">Fostering innovation and entrepreneurship.</p>
-      <p class="modal-text">
-        On October 10, 2023, I founded Boulder Launchpad – a vibrant community built to support local innovation. As president, I facilitated connections between startups, investors, and mentors, cultivating an ecosystem where groundbreaking ideas could flourish.
-      </p>
-    </div>
-  </div>
-
-  <!-- Modal 9: Empower Internship -->
-  <div id="modal9" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Empower Internship</h2>
-      <span class="modal-date">May 12, 2024 – Aug 20, 2024</span>
-      <img src="https://www.empowerfieldatmilehigh.com/assets/img/efamh_images_560x420_3D_seating_chart-74d0839275.jpg" alt="Empower Internship" class="modal-image" />
-      <p class="modal-caption">Streamlining workflow services.</p>
-      <p class="modal-text">
-        Between May 12, 2024 and August 20, 2024, I interned at Empower, where I played an integral role in refining operational workflows. By developing a robust PDF Generation Workflow Service using AWS and Apache PDFBox, I helped enhance service efficiency for a wide range of customers.
-      </p>
-    </div>
-  </div>
-
-  <!-- Modal 10: Ibotta Internship -->
-  <div id="modal10" class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h2>Ibotta Internship</h2>
-      <span class="modal-date">Aug 5, 2024 – Dec 15, 2024</span>
-      <img src="https://i0.wp.com/newspack-coloradosun.s3.amazonaws.com/wp-content/uploads/2024/04/Ibotta-Office-3-1-1200x800.jpg?resize=780%2C520&quality=85&ssl=1" alt="Ibotta Internship" class="modal-image" />
-      <p class="modal-caption">Enhancing user engagement.</p>
-      <p class="modal-text">
-        From August 5, 2024 to December 15, 2024, I took part in an internship at Ibotta focused on enhancing digital engagement. I developed a ChatGPT plugin that provided personalized shopping assistance, significantly improving user interaction and setting the stage for future advances in conversational AI.
-      </p>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    // Initialize the interview tool at step1
+    displayStep('step1');
+  </script>
 </body>
 </html>
