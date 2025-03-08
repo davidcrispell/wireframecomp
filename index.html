@@ -1,248 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Netflix Interview Tool for Over-50 Users</title>
-  <style>
-    /* Global Styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background: #f7f7f7;
-      line-height: 1.6;
-    }
-    header {
-      margin-bottom: 20px;
-    }
-    h1, h2, h3 {
-      color: #2c3e50;
-    }
-    section {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-bottom: 40px;
-    }
-    button {
-      margin: 10px 5px 0 0;
-      padding: 8px 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .option-button {
-      display: block;
-      margin: 8px 0;
-      padding: 8px 12px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    textarea {
-      width: 100%;
-      height: 100px;
-      margin-top: 10px;
-      font-size: 16px;
-      padding: 8px;
-      box-sizing: border-box;
-    }
-    ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-    li {
-      background: #eef;
-      margin: 5px 0;
-      padding: 8px;
-      border-radius: 4px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netflix Homepage Redesign Project</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Netflix Interview Tool</h1>
-    <p>This enhanced tool guides you through a branching interview about Netflix usage by older users. For each open-ended question, use the text area provided to record your observations. When you’re finished, you’ll have an opportunity to review your responses.</p>
-  </header>
-  
-  <section id="interviewTool">
-    <div id="interviewContent">
-      <!-- Interview steps will be loaded here -->
+  <div class="slideshow-container">
+    <!-- Slide 1: Introduction -->
+    <div class="slide active" id="slide1">
+      <h2>Netflix Homepage Redesign Project</h2>
+      <p>
+        This project is a comprehensive redesign of the Netflix homepage aimed at improving overall usability, enhancing visual hierarchy, and increasing user engagement.
+        We focus on addressing issues such as interface clutter, confusing navigation, and visual overload while preserving the core functionality that users love.
+      </p>
+      <p>
+        In the following slides, you will see detailed explanations of the problems with the current design, interactive wireframes of both the existing and proposed layouts,
+        and interactive previews of pixel-perfect mockups that bring the redesign to life.
+      </p>
     </div>
-  </section>
-  
-  <script>
-    // Global object to store responses
-    const responses = {};
 
-    // Interview Tool Steps with Branching Logic and Response Recording
-    const steps = {
-      step1: {
-        id: 'step1',
-        content: `
-          <h3>Welcome</h3>
-          <p>Welcome to the Netflix Interview Tool for users over 50. This interview will help you gather insights about digital interfaces. Click "Begin Interview" to get started.</p>
-        `,
-        options: [{ text: 'Begin Interview', next: 'step2' }],
-        recordResponse: false
-      },
-      step2: {
-        id: 'step2',
-        content: `
-          <h3>Good Technology</h3>
-          <p>Describe a piece of technology that you like and feel comfortable using (for example, a streaming service, a smartphone app, or another digital device).<br>
-          Was it easy to use right away, or did you need to learn how to use it over time?</p>
-        `,
-        options: [
-          { text: 'Easy to Use Right Away', next: 'step3' },
-          { text: 'Required Learning Over Time', next: 'step4' }
-        ],
-        recordResponse: false
-      },
-      step3: {
-        id: 'step3',
-        content: `
-          <h3>Follow-up: Easy to Use</h3>
-          <p>What features made this technology friendly for beginners? <em>(Please record your answer below.)</em></p>
-        `,
-        options: [{ text: 'Save & Continue', next: 'step5' }],
-        recordResponse: true
-      },
-      step4: {
-        id: 'step4',
-        content: `
-          <h3>Follow-up: Learning Curve</h3>
-          <p>What challenges did you face when learning to use it, and how did you overcome them? <em>(Please record your answer below.)</em></p>
-        `,
-        options: [{ text: 'Save & Continue', next: 'step5' }],
-        recordResponse: true
-      },
-      step5: {
-        id: 'step5',
-        content: `
-          <h3>Bad Technology</h3>
-          <p>Now, identify a piece of technology you dislike or find frustrating.<br>
-          Did you dislike it immediately, or did your frustration develop over time?</p>
-        `,
-        options: [
-          { text: 'Disliked Immediately', next: 'step6' },
-          { text: 'Frustration Developed Gradually', next: 'step7' }
-        ],
-        recordResponse: false
-      },
-      step6: {
-        id: 'step6',
-        content: `
-          <h3>Follow-up: Immediate Dislike</h3>
-          <p>What aspects of this technology made it frustrating from the start? <em>(Please record your answer below.)</em></p>
-        `,
-        options: [{ text: 'Save & Continue', next: 'step8' }],
-        recordResponse: true
-      },
-      step7: {
-        id: 'step7',
-        content: `
-          <h3>Follow-up: Gradual Frustration</h3>
-          <p>What features or aspects became problematic over time, and why? <em>(Please record your answer below.)</em></p>
-        `,
-        options: [{ text: 'Save & Continue', next: 'step8' }],
-        recordResponse: true
-      },
-      step8: {
-        id: 'step8',
-        content: `
-          <h3>Emotional Response</h3>
-          <p>How do you feel about the prospect of using new technology? Why do you think you feel that way? <em>(Please record your answer below.)</em></p>
-        `,
-        options: [{ text: 'Save & Continue', next: 'step9' }],
-        recordResponse: true
-      },
-      step9: {
-        id: 'step9',
-        content: `
-          <h3>Learning Preferences</h3>
-          <p>How do you prefer to learn new technology? (For example, step-by-step tutorials, video demos, in-person training, or interactive demos.) <em>(Please record your answer below.)</em></p>
-        `,
-        options: [{ text: 'Save & Continue', next: 'step10' }],
-        recordResponse: true
-      },
-      step10: {
-        id: 'step10',
-        content: `
-          <h3>Additional Feedback</h3>
-          <p>Do you have any extra suggestions or ideas for improving digital interfaces like Netflix for users over 50? <em>(Please record your answer below.)</em></p>
-        `,
-        options: [{ text: 'Review Your Responses', next: 'step11' }],
-        recordResponse: true
-      },
-      step11: {
-        id: 'step11',
-        content: `<h3>Review Your Responses</h3>`,
-        options: [{ text: 'Finish Interview', next: 'step12' }],
-        recordResponse: false
-      },
-      step12: {
-        id: 'step12',
-        content: `
-          <h3>Conclusion</h3>
-          <p>Thank you for completing the interview. Your responses have been recorded. If you wish, you can restart the interview.</p>
-        `,
-        options: [{ text: 'Restart Interview', next: 'step1' }],
-        recordResponse: false
-      }
-    };
+    <!-- Slide 2: Description of Problem -->
+    <div class="slide" id="slide2">
+      <h2>A) Description of Problem</h2>
+      <p>
+        Although the current Netflix homepage is iconic, it suffers from several usability issues:
+      </p>
+      <ul>
+        <li><strong>Cluttered Layout:</strong> The homepage displays too many competing elements which distract users from the main content. This clutter makes it difficult for users to quickly find what they want.</li>
+        <li><strong>Navigation Confusion:</strong> The menu structure lacks clear separation between content types (TV shows, movies, etc.), leaving users unsure where to find their desired category.</li>
+        <li><strong>Visual Overload:</strong> The mix of large images, overlaying texts, and multiple calls-to-action leads to sensory overload, making the interface feel overwhelming and unfocused.</li>
+      </ul>
+      <p>
+        Below is an interactive preview of the current (original) Netflix homepage. Use this preview to understand the starting point for our redesign.
+      </p>
+      <iframe src="before.html" style="width:100%; height:500px; border:1px solid #ccc;"></iframe>
+    </div>
 
-    // Function to display a given interview step
-    function displayStep(stepId) {
-      const step = steps[stepId];
-      let html = step.content;
+    <!-- Slide 3: Wireframe of Existing UI -->
+    <div class="slide" id="slide3">
+      <h2>B) Wireframe of Existing UI</h2>
+      <p>
+        The wireframe below represents a simplified, monochromatic blueprint of the existing Netflix homepage. It strips away color and imagery to focus on the layout, content organization, and interaction flow.
+      </p>
+      <p>
+        In this wireframe, notice how the navigation menu, hero section, and content rows are arranged. This simplified view helps us pinpoint areas where the content hierarchy can be improved.
+      </p>
+      <p>
+        <a href="wireframe-before.html" class="dummy-link" target="_blank">Open Interactive Wireframe (Existing UI) in a new tab</a>
+      </p>
+      <iframe src="wireframe-before.html" style="width:100%; height:500px; border:1px dashed #000;"></iframe>
+    </div>
 
-      // For the "Review Your Responses" step, generate dynamic summary
-      if (step.id === 'step11') {
-        html += generateReviewContent();
-      }
+    <!-- Slide 4: Wireframe of Redesigned UI -->
+    <div class="slide" id="slide4">
+      <h2>C) Wireframe of Redesigned UI</h2>
+      <p>
+        The redesigned wireframe reorganizes the content to create a more intuitive flow. Here, we’ve restructured the navigation, simplified the content blocks, and adjusted the layout to make the key elements stand out.
+      </p>
+      <p>
+        This wireframe acts as a blueprint for the new design, ensuring that the improved structure supports both existing functionalities and new enhancements such as clearer category divisions and improved call-to-action placement.
+      </p>
+      <p>
+        <a href="wireframe-after.html" class="dummy-link" target="_blank">Open Interactive Wireframe (Redesigned UI) in a new tab</a>
+      </p>
+      <iframe src="wireframe-after.html" style="width:100%; height:500px; border:1px dashed #000;"></iframe>
+    </div>
 
-      // If this step requires recording a response, add a text area and a save button.
-      if (step.recordResponse) {
-        html += `<textarea id="responseInput" placeholder="Record your response here..."></textarea>`;
-        // We assume only one option for response-recording steps.
-        if (step.options && step.options.length > 0) {
-          html += `<button class="option-button" onclick="saveResponse('${step.id}', '${step.options[0].next}')">${step.options[0].text}</button>`;
-        }
-      } else {
-        // For steps without a response input, simply list the options.
-        if (step.options && step.options.length > 0) {
-          step.options.forEach(option => {
-            html += `<button class="option-button" onclick="displayStep('${option.next}')">${option.text}</button>`;
-          });
-        }
-      }
-      document.getElementById('interviewContent').innerHTML = html;
-    }
+    <!-- Slide 5: Pixel Mocks of Redesigned UI -->
+    <div class="slide" id="slide5">
+      <h2>D) Pixel Mocks of Redesigned UI</h2>
+      <p>
+        The final redesign is shown in the pixel‑perfect mockup below. This version incorporates refined typography, a modern color palette, and interactive elements with hover states.
+      </p>
+      <p>
+        Here, the improved navigation, updated imagery, and cleaner layout work together to create a user-friendly experience that is both visually appealing and functional.
+      </p>
+      <p>
+        Below is an interactive preview of the redesigned homepage. Notice how the updated design clearly differentiates between sections and prioritizes content effectively.
+      </p>
+      <iframe src="after.html" style="width:100%; height:500px; border:1px solid #ccc;"></iframe>
+    </div>
 
-    // Function to save the response from the text area and go to the next step
-    function saveResponse(currentStepId, nextStepId) {
-      const response = document.getElementById('responseInput').value.trim();
-      responses[currentStepId] = response;
-      displayStep(nextStepId);
-    }
+    <!-- Slide 6: Side-by-Side Comparison -->
+    <div class="slide" id="slide6">
+      <h2>E) Side-by-Side Comparison</h2>
+      <p>
+        To clearly illustrate the improvements, the following side-by-side comparison displays the original and redesigned homepages.
+        This comparison highlights key differences such as layout clarity, navigation improvements, and visual hierarchy enhancements.
+      </p>
+      <div class="comparison-container">
+        <div style="width:49%;">
+          <h3>Before</h3>
+          <iframe src="before.html" style="width:100%; height:500px; border:1px solid #ccc;"></iframe>
+        </div>
+        <div style="width:49%;">
+          <h3>After</h3>
+          <iframe src="after.html" style="width:100%; height:500px; border:1px solid #ccc;"></iframe>
+        </div>
+      </div>
+      <p>
+        Key Differences:
+      </p>
+      <ul>
+        <li><strong>Layout Improvement:</strong> The redesigned layout provides a clearer focus on important content areas and reduces unnecessary clutter.</li>
+        <li><strong>Improved Navigation:</strong> Menus are now distinctly organized and easier to navigate, leading to a more intuitive user experience.</li>
+        <li><strong>Visual Hierarchy:</strong> The use of updated typography, spacing, and color directs the user's attention to high-priority information effectively.</li>
+      </ul>
+    </div>
 
-    // Function to generate review content from recorded responses
-    function generateReviewContent() {
-      let reviewHTML = `<p>Below are your recorded responses:</p>`;
-      if (Object.keys(responses).length === 0) {
-        reviewHTML += `<p><em>No responses recorded.</em></p>`;
-      } else {
-        reviewHTML += `<ul>`;
-        // Loop over the steps that recorded responses
-        for (const key in responses) {
-          reviewHTML += `<li><strong>${key}:</strong> ${responses[key]}</li>`;
-        }
-        reviewHTML += `</ul>`;
-      }
-      return reviewHTML;
-    }
+    <!-- Navigation Buttons -->
+    <div class="navigation">
+      <button class="nav-button" onclick="changeSlide(-1)">Previous</button>
+      <button class="nav-button" onclick="changeSlide(1)">Next</button>
+    </div>
+  </div>
 
-    // Initialize the interview tool at step1
-    displayStep('step1');
-  </script>
+  <!-- Placeholder Modal for Dummy Links -->
+  <div id="placeholderModal">
+    <h2>Placeholder Page</h2>
+    <p>This is a dummy page for interactive navigation. It serves as a stand-in for pages that would normally contain more detailed content.</p>
+    <button class="nav-button" onclick="closeModal()">Back</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
