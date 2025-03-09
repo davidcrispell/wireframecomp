@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const cacheExpiryKey = 'schoolDataExpiry';
     const cacheDuration = 60 * 60 * 1000; // 1 hour in milliseconds
   
+    // Global variable to hold all school data
+    window.allSchoolData = [];
+  
     // Ask the user whether to fetch all data or just the first page.
     const fetchAll = window.confirm(
       "Do you want to fetch all data? Click OK for all pages, Cancel for just the first page."
@@ -14,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const baseUrl = 'https://api.data.gov/ed/collegescorecard/v1/schools';
     const tableBody = document.getElementById('table-body');
   
-    // Build base query parameters – using school.state (2-letter code) for state info.
+    // Build base query parameters.
     const params = new URLSearchParams();
     params.append('api_key', API_KEY);
     // Maximum results per page is 100.
@@ -32,30 +35,30 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json());
     }
   
-    // Function to process results and populate the table.
-    function processResults(allResults) {
-      console.log("Total results loaded:", allResults.length);
-  
-      allResults.forEach(school => {
+    // Render table rows from the provided data array.
+    function renderTable(data) {
+      tableBody.innerHTML = '';
+      console.log(`Rendering ${data.length} rows`);
+      data.forEach(school => {
         const tr = document.createElement('tr');
         tr.classList.add("hover:bg-gray-50", "dark:hover:bg-gray-800", "cursor-pointer");
   
-        // Extract fields
+        // Extract fields.
         const schoolName = school['school.name'] || 'N/A';
-        const ownership = school['school.ownership'];
-        const enrollment = school['latest.student.size'] || 'N/A';
+        const ownership = Number(school['school.ownership']);
+        const enrollment = school['latest.student.size'] ? Number(school['latest.student.size']) : 'N/A';
         const graduationRate = school['latest.completion.completion_rate_4yr_150nt'];
         const retentionRate = school['latest.student.retention_rate.four_year.full_time'];
         const predominant = school['school.degrees_awarded.predominant'];
   
-        // Get state abbreviation from the API and map it to full state name.
+        // Map state abbreviation to full state name.
         const stateAbbrev = school['school.state'];
-        const stateName = stateAbbrev ? window.stateMapping[stateAbbrev.toUpperCase()] : 'N/A';           
+        const stateName = stateAbbrev ? window.stateMapping[stateAbbrev.toUpperCase()] : 'N/A';
   
-        // Determine if Bachelor's is offered
+        // Determine if Bachelor's is offered.
         const bachelorsOffered = (predominant == 3) ? 'Yes' : 'No';
   
-        // Convert ownership code to text
+        // Convert ownership code to text.
         let schoolType = 'Unknown';
         if (ownership === 1) {
           schoolType = 'Public';
@@ -65,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
           schoolType = 'Private For-Profit';
         }
   
-        // Format as percentages if numeric
+        // Format percentages if numeric.
         const formattedRetention =
           (typeof retentionRate === 'number')
             ? (retentionRate * 100).toFixed(1) + '%'
@@ -89,12 +92,99 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
         tableBody.appendChild(tr);
       });
-  
-      // Initialize the datatable (adds search, pagination, export controls)
-      initDataTable();
     }
   
-    // Check if cached data exists and is still valid.
+    // Apply filters based on user input.
+    function applyFilters() {
+      let schoolTypeFilter = document.getElementById('filter-school-type').value;
+      let enrollmentMin = parseInt(document.getElementById('filter-enrollment-min').value);
+      let enrollmentMax = parseInt(document.getElementById('filter-enrollment-max').value);
+      let retentionMin = parseFloat(document.getElementById('filter-retention-min').value);
+      let retentionMax = parseFloat(document.getElementById('filter-retention-max').value);
+      
+      console.log('Filter values:', schoolTypeFilter, enrollmentMin, enrollmentMax, retentionMin, retentionMax);
+      
+      if (isNaN(enrollmentMin)) enrollmentMin = null;
+      if (isNaN(enrollmentMax)) enrollmentMax = null;
+      if (isNaN(retentionMin)) retentionMin = null;
+      if (isNaN(retentionMax)) retentionMax = null;
+  
+      const filteredData = window.allSchoolData.filter(school => {
+        // Determine school type.
+        const ownership = Number(school['school.ownership']);
+        let schoolType = 'Unknown';
+        if (ownership === 1) {
+          schoolType = 'Public';
+        } else if (ownership === 2) {
+          schoolType = 'Private Nonprofit';
+        } else if (ownership === 3) {
+          schoolType = 'Private For-Profit';
+        }
+        if (schoolTypeFilter && schoolType !== schoolTypeFilter) {
+          return false;
+        }
+  
+        // Enrollment filter.
+        const enrollment = Number(school['latest.student.size']);
+        if (!isNaN(enrollment)) {
+          if (enrollmentMin !== null && enrollment < enrollmentMin) return false;
+          if (enrollmentMax !== null && enrollment > enrollmentMax) return false;
+        } else if (enrollmentMin !== null || enrollmentMax !== null) {
+          return false;
+        }
+  
+        // Retention rate filter (converted to percentage).
+        const retentionRate = Number(school['latest.student.retention_rate.four_year.full_time']);
+        if (!isNaN(retentionRate)) {
+          const retentionPercent = retentionRate * 100;
+          if (retentionMin !== null && retentionPercent < retentionMin) return false;
+          if (retentionMax !== null && retentionPercent > retentionMax) return false;
+        } else if (retentionMin !== null || retentionMax !== null) {
+          return false;
+        }
+        return true;
+      });
+      
+      console.log(`Filtered data count: ${filteredData.length}`);
+      return filteredData;
+    }
+  
+    // Reinitialize the DataTable after updating the table rows.
+    function reinitializeDataTable() {
+      if (window.dataTableInstance && typeof window.dataTableInstance.destroy === 'function') {
+        console.log("Destroying existing DataTable instance");
+        window.dataTableInstance.destroy(true);  // Updated to preserve current table markup
+      }
+      // Use setTimeout to ensure the DOM updates finish before reinitialization.
+      setTimeout(() => {
+        console.log("Reinitializing DataTable");
+        window.initDataTable();
+      }, 0);
+    }
+  
+    // Initialize filter controls.
+    function initFilters() {
+      const applyBtn = document.getElementById('apply-filters');
+      if (applyBtn) {
+        applyBtn.addEventListener('click', function() {
+          console.log("Apply Filters button clicked");
+          const filteredData = applyFilters();
+          renderTable(filteredData);
+          reinitializeDataTable();
+        });
+      }
+    }
+  
+    // Process results: store data, render table, initialize DataTable, and set up filters.
+    function processResults(allResults) {
+      console.log("Total results loaded:", allResults.length);
+      window.allSchoolData = allResults;
+      renderTable(allResults);
+      window.initDataTable();
+      initFilters();
+    }
+  
+    // Check for cached data.
     const cachedData = localStorage.getItem(cacheKey);
     const cacheExpiry = localStorage.getItem(cacheExpiryKey);
     if (cachedData && cacheExpiry && Date.now() < parseInt(cacheExpiry)) {
@@ -102,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const allResults = JSON.parse(cachedData);
       processResults(allResults);
     } else {
-      // First, fetch page 0 to get metadata and initial results.
+      // Fetch initial page.
       fetchPage(0)
         .then(initialData => {
           if (initialData.error || initialData.errors) {
@@ -119,16 +209,11 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("API Error:", initialData);
             return Promise.reject("API Error");
           }
-  
-          // Extract pagination metadata.
           const total = initialData.metadata.total;
           const perPage = parseInt(initialData.metadata.per_page);
           const totalPages = Math.ceil(total / perPage);
-  
-          // The first page of results.
           let allResults = initialData.results || [];
   
-          // If the user wants all pages AND there is more than one page, fetch the rest.
           if (fetchAll && totalPages > 1) {
             let requests = [];
             for (let i = 1; i < totalPages; i++) {
@@ -143,12 +228,10 @@ document.addEventListener("DOMContentLoaded", function() {
               return allResults;
             });
           } else {
-            // Only return page 0 if user opted out of fetching all.
             return allResults;
           }
         })
         .then(allResults => {
-          // Cache the results for future use.
           localStorage.setItem(cacheKey, JSON.stringify(allResults));
           localStorage.setItem(cacheExpiryKey, Date.now() + cacheDuration);
           processResults(allResults);

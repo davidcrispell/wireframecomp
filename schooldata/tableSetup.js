@@ -1,4 +1,3 @@
-// tableSetup.js
 document.addEventListener("DOMContentLoaded", function() {
     // Define initDataTable() so that app.js can call it after the table is populated.
     window.initDataTable = function() {
@@ -6,13 +5,19 @@ document.addEventListener("DOMContentLoaded", function() {
       if (!tableEl || typeof simpleDatatables.DataTable === 'undefined') {
         return;
       }
-
+  
+      // If an instance already exists, destroy it while preserving current table markup.
+      if (window.dataTableInstance && typeof window.dataTableInstance.destroy === 'function') {
+        window.dataTableInstance.destroy(true);
+      }
+  
       // Initialize the DataTable with a custom template for Flowbite styling.
-      const table = new simpleDatatables.DataTable(tableEl, {
+      // Increase perPage to display more rows at once (changed from 5 to 25).
+      window.dataTableInstance = new simpleDatatables.DataTable(tableEl, {
         searchable: true,
         paging: true,
-        perPage: 5,
-        perPageSelect: [5, 10, 15, 20],
+        perPage: 25,
+        perPageSelect: [5, 10, 15, 20, 25],
         layout: { top: "", bottom: "" },
         template: (options, dom) => {
           return `
@@ -73,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
                       <button id="export-txt"
                         class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm 
                                text-gray-500 hover:bg-gray-100 hover:text-gray-900 
-                               dark:text-gray-400 dark:hover:bg-gray-600 dark:hover{text-white"
+                               dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                       >
                         TXT
                       </button>
@@ -126,39 +131,41 @@ document.addEventListener("DOMContentLoaded", function() {
           `;
         }
       });
-    
-      // Initialize Flowbite dropdown for the "Export as" button
+  
+      // Initialize Flowbite dropdown for the "Export as" button.
       const $exportButton = document.getElementById("exportDropdownButton");
       const $exportDropdownEl = document.getElementById("exportDropdown");
       if ($exportButton && $exportDropdownEl) {
         new Dropdown($exportDropdownEl, $exportButton);
       }
-    
-      // Hook up export buttons – note columnDelimiter is now a comma for proper CSV formatting
+  
+      // Hook up export buttons.
       document.getElementById("export-csv").addEventListener("click", () => {
-        simpleDatatables.exportCSV(table, {
+        simpleDatatables.exportCSV(window.dataTableInstance, {
           download: true,
           lineDelimiter: "\n",
           columnDelimiter: ","
         });
       });
       document.getElementById("export-json").addEventListener("click", () => {
-        simpleDatatables.exportJSON(table, {
+        simpleDatatables.exportJSON(window.dataTableInstance, {
           download: true,
           space: 2
         });
       });
       document.getElementById("export-txt").addEventListener("click", () => {
-        simpleDatatables.exportTXT(table, {
+        simpleDatatables.exportTXT(window.dataTableInstance, {
           download: true
         });
       });
       document.getElementById("export-sql").addEventListener("click", () => {
-        simpleDatatables.exportSQL(table, {
+        simpleDatatables.exportSQL(window.dataTableInstance, {
           download: true,
           tableName: "export_table"
         });
       });
+  
+      // Log the new instance for debugging.
+      console.log("New DataTable instance:", window.dataTableInstance);
     };
   });
-  
