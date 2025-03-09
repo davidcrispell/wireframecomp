@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (!tableEl || typeof simpleDatatables.DataTable === 'undefined') {
         return;
       }
-  
+
       // Initialize the DataTable with a custom template for Flowbite styling.
       const table = new simpleDatatables.DataTable(tableEl, {
         searchable: true,
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
                       <button id="export-txt"
                         class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm 
                                text-gray-500 hover:bg-gray-100 hover:text-gray-900 
-                               dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                               dark:text-gray-400 dark:hover:bg-gray-600 dark:hover{text-white"
                       >
                         TXT
                       </button>
