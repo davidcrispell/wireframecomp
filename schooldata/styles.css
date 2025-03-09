@@ -1,0 +1,22 @@
+/* styles.css */
+
+/* 1) Hide default Simple-DataTables sorting icons */
+.dataTable-sorter::after,
+.dataTable-sorter::before {
+  content: none !important;
+}
+
+/* 2) (Optional) Adjust search input styling from Flowbite’s docs */
+.dataTable-input {
+  @apply block w-full p-2 pl-10 text-sm border border-gray-300 rounded-lg bg-gray-50 
+    text-gray-900 focus:ring-primary-500 focus:border-primary-500 dark:border-gray-600 
+    dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400 dark:focus:ring-primary-500 
+    dark:focus:border-primary-500;
+}
+
+/* 3) (Optional) Adjust per-page dropdown styling */
+.dataTable-selector {
+  @apply block w-16 rounded-md border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 
+    focus:ring-primary-500 focus:border-primary-500 dark:border-gray-600 dark:bg-gray-700 
+    dark:text-gray-400 dark:placeholder-gray-400 dark:focus:ring-primary-500 dark:focus:border-primary-500;
+}
