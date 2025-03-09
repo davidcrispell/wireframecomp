@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Flowbite-Style Datatable</title>
+  <title>School Data</title>
 
-  <!-- Tailwind & Flowbite (example from CDN) -->
+  <!-- Tailwind & Flowbite (from CDN) -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.2.7/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.css" rel="stylesheet" />
 
@@ -17,46 +17,34 @@
 <body class="bg-gray-100 p-4">
 
   <div class="container mx-auto">
-    <h1 class="text-2xl font-bold mb-4">Flowbite-style Datatable</h1>
+    <h1 class="text-2xl font-bold mb-4">School DAta</h1>
 
-    <!-- Your table markup with Flowbite's example icons in the header -->
+    <!-- Table with headers -->
     <table id="export-table" class="min-w-full text-sm text-left text-gray-500 dark:text-gray-400 border">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
           <th>
-            <span class="flex items-center">
-              Name
-            </span>
+            <span class="flex items-center">Name</span>
           </th>
           <th>
-            <span class="flex items-center">
-              School Type
-            </span>
+            <span class="flex items-center">School Type</span>
           </th>
           <th>
-            <span class="flex items-center">
-              Enrollment
-            </span>
+            <span class="flex items-center">Enrollment</span>
           </th>
           <th>
-            <span class="flex items-center">
-              Bachelor’s Offered
-            </span>
+            <span class="flex items-center">Bachelor’s Offered</span>
           </th>
           <th>
-            <span class="flex items-center">
-              Retention Rate
-            </span>
+            <span class="flex items-center">Retention Rate</span>
           </th>
           <th>
-            <span class="flex items-center">
-              Graduation Rate
-            </span>
+            <span class="flex items-center">Graduation Rate</span>
           </th>
         </tr>
       </thead>
       <tbody id="table-body">
-        <!-- Rows populated by app.js -->
+        <!-- Rows will be populated by app.js -->
       </tbody>
     </table>
   </div>
@@ -65,7 +53,7 @@
   <script src="https://unpkg.com/flowbite@1.6.5/dist/flowbite.min.js"></script>
 
   <!-- Simple Datatables JS -->
-  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" ></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
 
   <!-- Our custom scripts -->
   <script src="tableSetup.js"></script>
