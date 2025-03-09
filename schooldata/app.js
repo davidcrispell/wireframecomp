@@ -66,6 +66,37 @@ const stateMapping = {
 };
 
 
+// Global variable to hold all school data
+window.allSchoolData = [];
+
+// Ask the user whether to fetch all data or just the first page.
+const fetchAll = window.confirm(
+  "Do you want to fetch all data? Click OK for all pages, Cancel for just the first page."
+);
+
+// Replace with your actual API key
+const API_KEY = 'caof23MEffltOqJfUdFLcPdujqPtmABupKlWswZ8';
+const baseUrl = 'https://api.data.gov/ed/collegescorecard/v1/schools';
+const tableBody = document.getElementById('table-body');
+
+// Build base query parameters.
+const params = new URLSearchParams();
+params.append('api_key', API_KEY);
+// Maximum results per page is 100.
+params.append('per_page', '100');
+params.append(
+  'fields',
+  'id,school.name,school.ownership,school.state,latest.student.size,latest.completion.completion_rate_4yr_150nt,latest.student.retention_rate.four_year.full_time,school.degrees_awarded.predominant'
+);
+
+function fetchPage(page) {
+  const pageParams = new URLSearchParams(params);
+  pageParams.set('page', page);
+  return fetch(`${baseUrl}?${pageParams.toString()}`)
+    .then(response => response.json());
+}
+
+
 // -------------------------
 // Full Table Rendering Function
 // -------------------------
