@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
         // Get state abbreviation from the API and map it to full state name.
         const stateAbbrev = school['school.state'];
-        const stateName = window.stateMapping[stateAbbrev] || 'N/A';
+        const stateName = stateAbbrev ? window.stateMapping[stateAbbrev.toUpperCase()] : 'N/A';           
   
         // Determine if Bachelor's is offered
         const bachelorsOffered = (predominant == 3) ? 'Yes' : 'No';
